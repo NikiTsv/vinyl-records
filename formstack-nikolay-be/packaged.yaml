@@ -1,0 +1,104 @@
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: nikolay-records-be
+    Description: nikolay-records-be
+    Author: nikolay tsvetanov
+    SpdxLicenseId: Apache-2.0
+    LicenseUrl: s3://aws-sam-cli-managed-default-samclisourcebucket-2bep81nw7sfr/bf048024a62841649bbfb347b3ade2a1
+    ReadmeUrl: s3://aws-sam-cli-managed-default-samclisourcebucket-2bep81nw7sfr/a397b4ae6d0e0186c45abdafbbe09b8f
+    Labels:
+    - tests
+    HomePageUrl: https://github.com/user1/my-app-project
+    SemanticVersion: 0.0.1
+    SourceCodeUrl: https://github.com/user1/my-app-project
+AWSTemplateFormatVersion: 2010-09-09
+Description: formstack-nikolay-be
+Transform:
+- AWS::Serverless-2016-10-31
+Resources:
+  getAllVinylRecordsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/get-all-items.getAllItemsHandler
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 100
+      Description: A simple example includes a HTTP get method to get all items from
+        a DynamoDB table.
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: VinylRecords
+      Environment:
+        Variables:
+          SAMPLE_TABLE:
+            Ref: VinylRecords
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /
+            Method: GET
+      CodeUri: s3://aws-sam-cli-managed-default-samclisourcebucket-2bep81nw7sfr/606366b52d186fd50543205bf8a37561
+  getVinylRecordByIdFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/get-by-id.getByIdHandler
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 100
+      Description: A simple example includes a HTTP get method to get one item by
+        id from a DynamoDB table.
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: VinylRecords
+      Environment:
+        Variables:
+          SAMPLE_TABLE:
+            Ref: VinylRecords
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /{id}
+            Method: GET
+      CodeUri: s3://aws-sam-cli-managed-default-samclisourcebucket-2bep81nw7sfr/606366b52d186fd50543205bf8a37561
+  putVinylRecordFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/put-item.putItemHandler
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 100
+      Description: A simple example includes a HTTP post method to add one item to
+        a DynamoDB table.
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: VinylRecords
+      Environment:
+        Variables:
+          SAMPLE_TABLE:
+            Ref: VinylRecords
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /
+            Method: POST
+      CodeUri: s3://aws-sam-cli-managed-default-samclisourcebucket-2bep81nw7sfr/606366b52d186fd50543205bf8a37561
+  VinylRecords:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: id
+        Type: String
+      ProvisionedThroughput:
+        ReadCapacityUnits: 2
+        WriteCapacityUnits: 2
+Outputs:
+  WebEndpoint:
+    Description: API Gateway endpoint URL for Prod stage
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/

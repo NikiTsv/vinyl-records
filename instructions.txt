@@ -1,0 +1,31 @@
+https://y2un7ztuih.execute-api.us-east-1.amazonaws.com/Prod/
+
+sam init --runtime nodejs10.x
+sam deploy -g
+sam package -t template.yml --output-template-file packaged.yaml --s3-bucket aws-sam-cli-managed-default-samclisourcebucket-2bep81nw7sfr
+sam publish -t packaged.yaml --region us-east-1
+
+
+{
+    "id": "1",
+    "artist": "Disturbed",
+    "album": "Believe",
+    "pic": "https://upload.wikimedia.org/wikipedia/en/2/23/Disturbed_Believe.jpg",
+    "tracks": []
+}
+
+{
+    "id": "2",
+    "artist": "Linkin Park",
+    "album": "Meteora",
+    "pic": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Linkin_Park_logo_2014.jpg",
+    "tracks": ["Hit the floor", "Dont stay"]
+}
+
+{
+    "id": "3",
+    "artist": "Godsmack",
+    "album": "Faceless",
+    "pic": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Linkin_Park_logo_2014.jpg",
+    "tracks": ["Straight out of line", "I stand alone"]
+}

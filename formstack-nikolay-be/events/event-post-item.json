@@ -1,0 +1,4 @@
+{
+    "httpMethod": "POST",
+    "body": "{\"id\": \"id1\",\"name\": \"Prayer\",\"arist\": \"Disturbed\",\"pic\": \"https://upload.wikimedia.org/wikipedia/en/2/23/Disturbed_Believe.jpg\",\"album\": \"Believe\"}"
+}
