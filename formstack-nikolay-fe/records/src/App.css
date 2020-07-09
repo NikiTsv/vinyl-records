@@ -1,3 +1,7 @@
+:root {
+    --main-accent-color: #0a8f84;
+}
+
 .footer {
     position: absolute;
     bottom: 0;
