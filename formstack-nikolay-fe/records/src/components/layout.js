@@ -3,11 +3,13 @@ import Navbar from './navbar';
 import Footer from './footer';
 
 const layout = (props) => (
-    <div>
-        <Navbar/>
+    <>
+        <Navbar />
+        <div className="m-1 overflow-auto" style={{height: '650px'}}>
             {props.children}
-        <Footer/>
-    </div>
+        </div>
+        <Footer />
+    </>
 )
 
 export default layout;

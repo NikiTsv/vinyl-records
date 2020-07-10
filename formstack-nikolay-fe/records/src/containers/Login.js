@@ -2,14 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actionTypes from '../actions/actionTypes';
 import Login from '../components/Login/Login';
+import { Container, Row, Col } from 'react-bootstrap';
 
 class LoginContainer extends Component {
 
     render () {
         return (
-            <>
-                <Login/>
-            </>
+            <Container>
+                <Row>
+                    <Col></Col>
+                    <Col >
+                        <Login/>
+                    </Col>
+                    <Col></Col>
+                </Row>
+            </Container>
         );
     }
 }
