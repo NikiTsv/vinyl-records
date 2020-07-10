@@ -1,0 +1,6 @@
+https://y2un7ztuih.execute-api.us-east-1.amazonaws.com/Prod/
+
+sam init --runtime nodejs10.x
+sam deploy -g
+sam package -t template.yml --output-template-file packaged.yaml --s3-bucket aws-sam-cli-managed-default-samclisourcebucket-2bep81nw7sfr
+sam publish -t packaged.yaml --region us-east-1
