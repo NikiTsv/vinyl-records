@@ -2,15 +2,24 @@
 
 // Get the DynamoDB table name from environment variables
 const tableName = process.env.SAMPLE_TABLE;
+const IS_CORS = true;
 
 // Create a DocumentClient that represents the query to add an item
 const dynamodb = require('aws-sdk/clients/dynamodb');
 const docClient = new dynamodb.DocumentClient();
 
+//handle cors
+const processResponse = require('./process-response');
+
 /**
  * A simple example includes a HTTP get method to get all items from a DynamoDB table.
  */
 exports.getAllItemsHandler = async (event) => {
+
+    if (event.httpMethod === 'OPTIONS') {
+        return processResponse(IS_CORS);
+    }
+
     if (event.httpMethod !== 'GET') {
         throw new Error(`getAllItems only accept GET method, you tried: ${event.httpMethod}`);
     }
@@ -26,12 +35,5 @@ exports.getAllItemsHandler = async (event) => {
     const data = await docClient.scan(params).promise();
     const items = data.Items;
 
-    const response = {
-        statusCode: 200,
-        body: JSON.stringify(items)
-    };
-
-    // All log statements are written to CloudWatch
-    console.info(`response from: ${event.path} statusCode: ${response.statusCode} body: ${response.body}`);
-    return response;
+    return processResponse(IS_CORS, items, event);
 }
