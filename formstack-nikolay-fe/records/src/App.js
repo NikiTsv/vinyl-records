@@ -13,7 +13,7 @@ function App() {
             <Switch>
                 <Route path="/" exact component = {LoginContainer}/>
                 <Route path="/records" component = {RecordsContainer}/>
-                <Route path="/create" component = {RecordsContainer}/>
+                <Route path="/add-record" component = {RecordsContainer}/>
                 <Route path="/edit" component = {RecordsContainer}/>
             </Switch>
         </Layout>

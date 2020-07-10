@@ -10,12 +10,16 @@ const handleOnClickHome = (props) => {
 const handleOnClickNewRecord = (props) => {
     props.history.push('/add-record');
 }
+const handleOnClickBrand = (props) => {
+    props.history.push('/');
+}
+
 
 const NavbarComponent = (props) => (
     <Navbar bg="light" expand="lg" className="navbar-fixed-top">
         <Container>
-            <Navbar.Brand href="/">Vinyl Records</Navbar.Brand>
-            <Navbar.Brand href="/">
+            <Navbar.Brand className='nav-lnk' onClick={()=>handleOnClickBrand(props)}>Vinyl Records</Navbar.Brand>
+            <Navbar.Brand>
                 <img src={logo} className="App-logo" alt="logo" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
