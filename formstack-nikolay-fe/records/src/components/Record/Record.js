@@ -9,7 +9,7 @@ const record = (props) => (
             <Card.Title>{props.artist} - {props.album}</Card.Title>
             {props.tracks.slice(0,3).map(track => (
                 <Card.Text>
-                    {track}
+                    {track.title} - {track.duration}
                 </Card.Text>
             ))}
             {props.tracks.length > 3 &&  <Card.Text>

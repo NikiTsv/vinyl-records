@@ -6,6 +6,14 @@ body {
     overflow: hidden;
 }
 
+.nav-lnk {
+    display: block;
+    padding: 0.5rem 1rem;
+}
+
+span.nav-lnk:hover {
+    cursor: pointer!important
+}
 
 .footer {
     position: fixed;

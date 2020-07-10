@@ -1,11 +1,12 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const user = (state = {}, action) => {
+    console.log(action)
+
     switch (action.type) {
-        case actionTypes.LOGGED_IN:
+        case actionTypes.LOGIN:
             return {
-                email: action.payload.email,
-                name: action.payload.name,
+                username: action.payload.username,
                 isAuthenticated: true
             };
         default:

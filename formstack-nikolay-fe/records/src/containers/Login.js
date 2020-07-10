@@ -6,13 +6,14 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 class LoginContainer extends Component {
 
+
     render () {
         return (
-            <Container>
+            <Container className="mt-5">
                 <Row>
                     <Col></Col>
-                    <Col >
-                        <Login/>
+                    <Col>
+                        <Login {...this.props}/>
                     </Col>
                     <Col></Col>
                 </Row>
@@ -29,7 +30,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        login: (username) => dispatch({type: actionTypes.LOGIN, payload: {username}})
     }
 };
 
