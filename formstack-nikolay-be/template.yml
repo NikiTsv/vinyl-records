@@ -106,6 +106,28 @@ Resources:
           Properties:
             Path: /
             Method: POST
+
+    # This is a Lambda function config associated with the source code: signed-url.js
+  getSignedUrlFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/signed-url.handler
+      Runtime: nodejs10.x
+      #MemorySize: 128
+      #Timeout: 100
+      Description: Returns S3 signed url for upload
+      Policies: AmazonS3FullAccess
+      Environment:
+        Variables:
+            UploadPictureBucket: 'nikolay-vinyl-records' #'YOUR_S3_BUCKET_NAME'
+            UploadPictureBucketRegion: 'us-east-1' #'YOUR_S3_BUCKET_REGION' # S3 bucket may be in a different region than applicaiton
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /signed-url
+            Method: POST
+
   # Simple syntax to create a DynamoDB table with a single attribute primary key, more in
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesssimpletable
 
