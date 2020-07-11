@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Form, Button } from 'react-bootstrap';
 import Track from '../Track/Track';
+import Uploader from '../UploadFIle/UploadFile';
 
 class CreateEditRecord extends Component {
     constructor(props){
@@ -93,16 +94,16 @@ class CreateEditRecord extends Component {
                         Add Track
                     </Button>
                     </Form.Group>
-                    <div className="d-flex justify-content-around flex-wrap mt-5">
                         {this.state.tracks.map((track,i)=> {
                             return <Track key={i} id={i} title={track} onTrackChange={this.onTrackChange} onTrackDelete={this.onTrackDelete}/>
                         })}
-                    </div>
 
                     <Button variant="primary" type="button" onClick={this.handleSubmit}>
                         Submit
                     </Button>
                 </Form>
+
+                <Uploader/>
             </div>
         );
     }

@@ -5,6 +5,7 @@ All cors is allowed by default for the demo.
 
 1. Configure api url in the FE formstack-nikolay-fe/records/config.js (or use the one provided)
 2. Create S3 bucket with public access and put cors policy from 'formstack-nikolay-be/s3-cors.config.txt'
+  - configure s3 bucket name in 'formstack-nikolay-fe/records/config.js'
 3. Go to template.yml and configure getSignedUrlFunction's environment variables to match your S3 bucket name and region
 4. You have to have AWS cli configured locally (aws configure command) and AWS SAM installed on your local machine
 5. go to 'formstack-nikolay-be' and run 'sam deploy -g' to deploy the sam configuration to your AWS environment
