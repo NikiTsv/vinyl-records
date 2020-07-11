@@ -8,7 +8,7 @@ const baseHeaders = {
     'Accept': 'application/json',
 };
 
-const createService = (postfixUrl, actionUrl, method, data) => {
+const createService = (postfixUrl, endpoint, method, data) => {
     return new Promise((resolve, reject) => {
         store.get(constants.USER_INFO).then((storedInfo) => {
             const { accessToken, id } = storedInfo;
@@ -27,7 +27,7 @@ const createService = (postfixUrl, actionUrl, method, data) => {
                 },
             };
             const request = new Request(
-                `${config.apiUrl}${postfixUrl}/${actionUrl}`,
+                `${config.apiUrl}${postfixUrl}/${endpoint}`,
                 { ...options }
             );
 
@@ -46,16 +46,19 @@ const createService = (postfixUrl, actionUrl, method, data) => {
 
 export const httpService = (postfixUrl) => {
     return {
-        get: (actionUrl) => {
-            return createService(postfixUrl, actionUrl, 'GET');
+        get: (endpoint) => {
+            return createService(postfixUrl, endpoint, 'GET');
         },
-        post: (actionUrl, data) => {
-            return createService(postfixUrl, actionUrl, 'POST', data);
+        post: (endpoint, data) => {
+            return createService(postfixUrl, endpoint, 'POST', data);
         }
     }
 }
 
-/* Example Usage */
+/* Example Usage
+    post to items/like
+    post to items/dislike
+*/
 
 import { httpService } from './httpService';
 
