@@ -6,15 +6,15 @@ import Footer from './components/footer';
 import { Route, Switch } from 'react-router-dom';
 import RecordsContainer from './containers/Records';
 import LoginContainer from './containers/Login';
-
+import CreateEditRecord from './containers/CreateEditRecord';
 function App() {
     return (
         <Layout>
             <Switch>
                 <Route path="/" exact component = {LoginContainer}/>
                 <Route path="/records" component = {RecordsContainer}/>
-                <Route path="/add-record" component = {RecordsContainer}/>
-                <Route path="/edit" component = {RecordsContainer}/>
+                <Route path="/add-record" component = {CreateEditRecord}/>
+                <Route path="/edit/:id" component = {CreateEditRecord}/>
             </Switch>
         </Layout>
     );

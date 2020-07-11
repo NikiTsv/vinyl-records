@@ -9,15 +9,9 @@ class LoginContainer extends Component {
 
     render () {
         return (
-            <Container className="mt-5">
-                <Row>
-                    <Col></Col>
-                    <Col>
-                        <Login {...this.props}/>
-                    </Col>
-                    <Col></Col>
-                </Row>
-            </Container>
+            <div className="d-flex justify-content-around flex-wrap mt-5">
+                <Login {...this.props}/>
+            </div>
         );
     }
 }
