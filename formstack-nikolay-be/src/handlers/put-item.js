@@ -31,7 +31,7 @@ exports.putItemHandler = async (event) => {
     // Get id and name from the body of the request
     const body = JSON.parse(event.body)
     let id = event.body.id
-    const {artist, album, pic, tracks, username, description} = body;
+    const {artist, album, pic, tracks, username, description, isFavorite} = body;
 
     if(!id){
         id = uuidv1();
@@ -40,7 +40,7 @@ exports.putItemHandler = async (event) => {
     // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#put-property
     var params = {
         TableName : tableName,
-        Item: { id, artist, album, pic, tracks, username, description }
+        Item: { id, artist, album, pic, tracks, username, description, isFavorite }
     };
 
     const result = await docClient.put(params).promise();
