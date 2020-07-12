@@ -1,7 +1,7 @@
 // user
 export const LOGIN = 'LOGIN';
 export const LOGGED_IN = 'LOGGED_IN';
-
+export const LOGOUT = 'LOGOUT';
 
 // records
 export const ADD_RECORD = 'ADD_RECORD';

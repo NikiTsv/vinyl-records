@@ -9,6 +9,11 @@ const user = (state = {}, action) => {
                 username: action.payload.username,
                 isAuthenticated: true
             };
+        case actionTypes.LOGOUT:
+            return {
+                username: '',
+                isAuthenticated: false
+            };
         default:
             return state;
     }
