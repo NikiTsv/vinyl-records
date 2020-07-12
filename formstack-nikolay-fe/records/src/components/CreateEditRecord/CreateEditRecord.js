@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Card } from 'react-bootstrap';
 import Track from '../Track/Track';
 import Uploader from '../UploadFIle/UploadFile';
 
@@ -12,11 +12,11 @@ class CreateEditRecord extends Component {
             album: '',
             isFav: false,
             description: '',
+            pic: '',
             tracks: []
         }
 
         this.onTrackChange = (index, value) => {
-            console.log('track change', index, value);
             const tracks = this.state.tracks.slice(0)
             tracks[index] = value;
             this.setState({
@@ -61,12 +61,19 @@ class CreateEditRecord extends Component {
 
         this.handleIsFavoriteChange = (evt) =>{
             this.setState({
-                isFavorite: evt.target.checked
+                isFav: evt.target.checked
             })
         }
 
         this.handleSubmit = () =>{
-            console.log(this.state)
+            console.log(this.props.username)
+            this.props.createOrEditRecord({...this.state, username: this.props.username})
+        }
+
+        this.fileUploaded = (url) => {
+            this.setState({
+                pic: url
+            })
         }
     }
 
@@ -76,20 +83,29 @@ class CreateEditRecord extends Component {
                 <Form>
                     <Form.Group controlId="formArtist">
                         <Form.Label>Artist</Form.Label>
-                        <Form.Control type="text" placeholder="Enter artist" />
+                        <Form.Control type="text" placeholder="Enter artist"  onChange={this.handleArtistChange}/>
                     </Form.Group>
                     <Form.Group controlId="formAlbum">
                         <Form.Label>Album</Form.Label>
                         <Form.Control type="text" placeholder="Enter album name" value={this.state.album} onChange={this.handleAlbumChange} />
                     </Form.Group>
                     <Form.Group controlId="formIsFav">
-                        <Form.Check type="checkbox" label="Is it a favorite?" checked={this.state.isFavorite} onChange={this.handleAlbumChange} />
+                        <Form.Check type="checkbox" label="Is it a favorite?" checked={this.state.isFav} onChange={this.handleIsFavoriteChange} />
                     </Form.Group>
                     <Form.Group controlId="formDesc">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control as="textarea" rows="3" />
+                        <Form.Control as="textarea" onChange={this.handleDescriptionChange} rows="3" />
                     </Form.Group>
                     <Form.Group controlId="formAddTrack">
+                    <Form.Group controlId="formPic">
+                        <Uploader fileUploaded={this.fileUploaded}/>
+                    </Form.Group>
+                    <Form.Group controlId="formPic" style={{display: this.state.pic ? 'block' : 'none' }} >
+                    <Card style={{ width: '18rem' }} className="mt-5 pb-5">
+                        <Card.Img variant="top"  src={this.state.pic} />
+                    </Card>
+                    </Form.Group>
+
                     <Button variant="primary" type="button" onClick={this.addTrack}>
                         Add Track
                     </Button>
@@ -103,7 +119,7 @@ class CreateEditRecord extends Component {
                     </Button>
                 </Form>
 
-                <Uploader/>
+
             </div>
         );
     }

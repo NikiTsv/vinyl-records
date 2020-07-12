@@ -7,7 +7,9 @@ export const getPresignedUploadParams = (fileName) =>{
             body: JSON.stringify({fileName})
         }
 
-        const request = new Request(config.api + 'signed-url', {...options})
+        const endpoint = 'signed-url';
+
+        const request = new Request(config.api + endpoint, {...options})
 
         fetch(request).then((res) => {
 

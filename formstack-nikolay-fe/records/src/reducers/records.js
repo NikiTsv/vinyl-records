@@ -1,7 +1,12 @@
 import * as actionTypes from '../actions/actionTypes';
 import * as utility from '../services/records.utility';
 
-const records = (state = {}, action) => {
+const initialState = {
+    items: [],
+    isLoading: false
+}
+
+const records = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.RECORD_ADDED:
             return {

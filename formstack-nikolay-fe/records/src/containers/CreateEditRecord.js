@@ -2,27 +2,32 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actionTypes from '../actions/actionTypes';
 import { Container, Row, Col } from 'react-bootstrap';
-import { putRecord } from "../actions/records";
-import CreateEditRecordComponent from '../components/CreateEditRecord/CreateEditRecord' ;
+import { createEditRecord } from "../actions/records";
+import CreateEditRecordComponent from '../components/CreateEditRecord/CreateEditRecord';
+import { createSelector } from 'reselect';
+import {getRecordFromStateOrEmpty } from '../services/records.utility';
 
 class CreateEditRecord extends Component {
 
-    render () {
+    render() {
         return (
-           <CreateEditRecordComponent {...this.props} />
+            <CreateEditRecordComponent {...this.props} />
         );
     }
 }
 
-const mapStateToProps = state => {
-    return {
 
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        username: state.user.username,
+        record: getRecordFromStateOrEmpty(state.records, ownProps.match.params.id)
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        // addRecord: (username) => dispatch({type: actionTypes.LOGIN, payload: {username}})
+        createOrEditRecord: (payload) => dispatch(createEditRecord(payload))
     }
 };
 
