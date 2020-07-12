@@ -15,8 +15,8 @@ function App() {
             <Switch>
                 <Route path="/" exact component = {LoginContainer}/>
                 <Route path="/records" component = {RecordsContainer}/>
-                <Route path="/add-record" component = {CreateEditRecord}/>
-                <Route path="/edit/:id" component = {CreateEditRecord}/>
+                <Route key="create" path="/add-record" component = {CreateEditRecord}/>
+                <Route key="edit" path="/edit/:id"  component = {CreateEditRecord}/>
                 <Route path="/record-details/:id" component = {RecordDetails}/>
             </Switch>
         </Layout>

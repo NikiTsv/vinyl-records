@@ -11,7 +11,7 @@ export const replaceEditedRecordInState = (records, newOrEditedRecord) => {
     return records.slice(0);
 }
 
-const createEmptyRecord = () => ({
+export const createEmptyRecord = () => ({
         id: '',
         artist: '',
         album: '',
@@ -33,7 +33,7 @@ const getRouteIdParamSelector = (state, props) => {
 const combiner = (items, id) => {
     const item = items.filter(i => i.id == id)[0];
     const emptyItem = createEmptyRecord();
-    return id ? item ? item : emptyItem : emptyItem;
+    return item ? item : emptyItem;
 }
 
 export const filteredByIdSelector = createSelector([getItemsSelector, getRouteIdParamSelector], combiner);

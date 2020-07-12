@@ -87,7 +87,7 @@ class CreateEditRecord extends Component {
                 <Form>
                     <Form.Group controlId="formArtist">
                         <Form.Label>Artist</Form.Label>
-                        <Form.Control type="text" placeholder="Enter artist"  onChange={this.handleArtistChange}/>
+                        <Form.Control type="text" placeholder="Enter artist" value={this.state.artist}  onChange={this.handleArtistChange}/>
                     </Form.Group>
                     <Form.Group controlId="formAlbum">
                         <Form.Label>Album</Form.Label>
