@@ -12,27 +12,28 @@ export const replaceEditedRecordInState = (records, newOrEditedRecord) => {
 }
 
 const createEmptyRecord = () => ({
-    id: '',
-    artist: '',
-    album: '',
-    isFav: false,
-    description: '',
-    pic: '',
-    tracks: []
-})
+        id: '',
+        artist: '',
+        album: '',
+        isFav: false,
+        description: '',
+        pic: '',
+        tracks: []})
 
 
 // just showcasing reselect, though in this simple app we are not gaining anything
-const getItemsSelector = (state, id) => {
+const getItemsSelector = (state, props) => {
     return state.records.items;
 }
 
-const getRouteIdParamSelector = (recordsState, props) => {
+const getRouteIdParamSelector = (state, props) => {
     return props.match.params.id;
 };
 
 const combiner = (items, id) => {
-    return id ? items.filter(i => i.id == id)[0] : createEmptyRecord();
+    const item = items.filter(i => i.id == id)[0];
+    const emptyItem = createEmptyRecord();
+    return id ? item ? item : emptyItem : emptyItem;
 }
 
-export const filteredByIdSelector = (state, id) => createSelector([getRouteIdParamSelector, getItemsSelector], combiner);
+export const filteredByIdSelector = createSelector([getItemsSelector, getRouteIdParamSelector], combiner);

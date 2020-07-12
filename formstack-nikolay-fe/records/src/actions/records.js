@@ -20,12 +20,15 @@ export const loadRecords = (username) => {
     }
 }
 
-export const createEditRecord = (payload) => {
+export const createEditRecord = (data, changeRouteFn) => {
+
     return (dispatch) => {
         dispatch({type: actionTypes.LOADING_RECORDS})
 
-        putRecord(payload).then((res) => {
-            if(payload.id){
+        putRecord(data).then((res) => {
+            changeRouteFn();
+
+            if(data.id){
                 dispatch({type: actionTypes.RECORD_EDITED, payload: res})
             }else{
                 dispatch({type: actionTypes.RECORD_ADDED, payload: res})

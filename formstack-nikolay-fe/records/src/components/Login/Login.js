@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom'
 
 const Login = (props) => {
     const [username, setUsername] = useState('demo');
-    console.log(props)
     const handleUsernameChange = (evt) => {
         setUsername(evt.target.value)
     }

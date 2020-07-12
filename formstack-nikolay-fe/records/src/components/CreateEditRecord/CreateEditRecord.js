@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import Track from '../Track/Track';
 import Uploader from '../UploadFIle/UploadFile';
+import { withRouter } from 'react-router-dom';
 
 class CreateEditRecord extends Component {
     constructor(props){
         super(props)
         this.state = {
             id: props.record.id || '',
-            artist: props.record.artisdt || '',
+            artist: props.record.artist || '',
             album: props.record.album || '',
             isFav: props.record.isFav || '',
             description: props.record.description || '',
@@ -66,8 +67,11 @@ class CreateEditRecord extends Component {
         }
 
         this.handleSubmit = () =>{
-            console.log(this.props.username)
-            this.props.createOrEditRecord({...this.state, username: this.props.username})
+            const changeRouteFn = () => {
+                this.props.history.push(`/records`);
+            }
+
+            this.props.createOrEditRecord({...this.state, username: this.props.username}, changeRouteFn)
         }
 
         this.fileUploaded = (url) => {
@@ -94,7 +98,7 @@ class CreateEditRecord extends Component {
                     </Form.Group>
                     <Form.Group controlId="formDesc">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control as="textarea" onChange={this.handleDescriptionChange} rows="3" />
+                        <Form.Control as="textarea" value={this.state.description} onChange={this.handleDescriptionChange} rows="3" />
                     </Form.Group>
                     <Form.Group controlId="formAddTrack">
                     <Form.Group controlId="formPic">
@@ -118,12 +122,10 @@ class CreateEditRecord extends Component {
                         Submit
                     </Button>
                 </Form>
-
-
             </div>
         );
     }
 }
 
 
-export default CreateEditRecord
+export default withRouter(CreateEditRecord)

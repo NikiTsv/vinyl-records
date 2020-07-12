@@ -7,6 +7,8 @@ import { Route, Switch } from 'react-router-dom';
 import RecordsContainer from './containers/Records';
 import LoginContainer from './containers/Login';
 import CreateEditRecord from './containers/CreateEditRecord';
+import RecordDetails from './containers/RecordDetails';
+
 function App() {
     return (
         <Layout>
@@ -15,6 +17,7 @@ function App() {
                 <Route path="/records" component = {RecordsContainer}/>
                 <Route path="/add-record" component = {CreateEditRecord}/>
                 <Route path="/edit/:id" component = {CreateEditRecord}/>
+                <Route path="/record-details/:id" component = {RecordDetails}/>
             </Switch>
         </Layout>
     );

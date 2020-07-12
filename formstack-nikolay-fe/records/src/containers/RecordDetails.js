@@ -2,24 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actionTypes from '../actions/actionTypes';
 import { Container, Row, Col } from 'react-bootstrap';
-import { createEditRecord } from "../actions/records";
-import CreateEditRecordComponent from '../components/CreateEditRecord/CreateEditRecord';
 import { createSelector } from 'reselect';
 import { filteredByIdSelector } from '../services/records.utility';
+import RecordDetailsComponent from '../components/RecordDetails/RecordDetails'
 import { withRouter } from 'react-router-dom';
 
-class CreateEditRecord extends Component {
+class RecordDetails extends Component {
 
     render() {
         return (
-            <CreateEditRecordComponent {...this.props} />
+            <RecordDetailsComponent {...this.props.record} />
         );
     }
 }
 
-
-
 const mapStateToProps = (state, ownProps) => {
+
     return {
         username: state.user.username,
         record: filteredByIdSelector(state, ownProps)
@@ -28,8 +26,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        createOrEditRecord: (payload, changeRouteFn) => dispatch(createEditRecord(payload, changeRouteFn))
+
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CreateEditRecord));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(RecordDetails));
