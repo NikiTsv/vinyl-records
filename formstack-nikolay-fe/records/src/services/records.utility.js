@@ -1,3 +1,4 @@
+import { createSelector } from 'reselect';
 
 export const replaceEditedRecordInState = (records, newOrEditedRecord) => {
     const existingRecordIndex = records.findIndex(r => r.id == newOrEditedRecord.id);
@@ -20,10 +21,18 @@ const createEmptyRecord = () => ({
     tracks: []
 })
 
-export const getRecordFromStateOrEmpty = (state, id) => {
-    if(state && id){
-        return this.state.items.filter(i => i.id == id)[0];
-    }else{
-        return createEmptyRecord();
-    }
+
+// just showcasing reselect, though in this simple app we are not gaining anything
+const getItemsSelector = (state, id) => {
+    return state.records.items;
 }
+
+const getRouteIdParamSelector = (recordsState, props) => {
+    return props.match.params.id;
+};
+
+const combiner = (items, id) => {
+    return id ? items.filter(i => i.id == id)[0] : createEmptyRecord();
+}
+
+export const filteredByIdSelector = (state, id) => createSelector([getRouteIdParamSelector, getItemsSelector], combiner);

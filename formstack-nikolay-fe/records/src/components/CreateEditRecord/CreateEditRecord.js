@@ -7,13 +7,13 @@ class CreateEditRecord extends Component {
     constructor(props){
         super(props)
         this.state = {
-            id: '',
-            artist: '',
-            album: '',
-            isFav: false,
-            description: '',
-            pic: '',
-            tracks: []
+            id: props.record.id || '',
+            artist: props.record.artisdt || '',
+            album: props.record.album || '',
+            isFav: props.record.isFav || '',
+            description: props.record.description || '',
+            pic: props.record.pic || '',
+            tracks: props.record.tracks ||  []
         }
 
         this.onTrackChange = (index, value) => {

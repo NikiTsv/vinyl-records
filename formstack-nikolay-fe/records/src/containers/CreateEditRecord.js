@@ -5,7 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { createEditRecord } from "../actions/records";
 import CreateEditRecordComponent from '../components/CreateEditRecord/CreateEditRecord';
 import { createSelector } from 'reselect';
-import {getRecordFromStateOrEmpty } from '../services/records.utility';
+import { filteredByIdSelector } from '../services/records.utility';
 
 class CreateEditRecord extends Component {
 
@@ -21,7 +21,7 @@ class CreateEditRecord extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         username: state.user.username,
-        record: getRecordFromStateOrEmpty(state.records, ownProps.match.params.id)
+        record: filteredByIdSelector(state, ownProps)
     };
 };
 

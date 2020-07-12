@@ -7,8 +7,8 @@ const record = (props) => (
         <Card.Img variant="top" src={props.pic} />
         <Card.Body className="d-flex flex-column">
             <Card.Title>{props.artist} - {props.album}</Card.Title>
-            {props.tracks.slice(0,3).map(track => (
-                <Card.Text>
+            {props.tracks.slice(0,3).map((track,i) => (
+                <Card.Text key={i}>
                     {track.title}
                 </Card.Text>
             ))}

@@ -2,7 +2,7 @@ import { Form } from 'react-bootstrap';
 import React, {useState} from 'react';
 
 
-const track = (props) => {
+const Track = (props) => {
     //const title = [title, setTitle] = useState(props.title)
 
     const handleChange = (evt) => {
@@ -17,4 +17,4 @@ const track = (props) => {
     )
 }
 
-export default track
+export default Track
