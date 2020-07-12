@@ -30,7 +30,7 @@ exports.putItemHandler = async (event) => {
 
     // Get id and name from the body of the request
     const body = JSON.parse(event.body)
-    let id = event.body.id
+    let id = body.id;
     const {artist, album, pic, tracks, username, description, isFavorite} = body;
 
     if(!id){
