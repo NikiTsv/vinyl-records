@@ -1,18 +1,24 @@
 General info:
+The web app is deployed on S3 and can be viewed on http://nikolay-records.s3-website-us-east-1.amazonaws.com/.
+Login with 'demo' user to view with content or type your own to start blank.
+
 'formstack-nikolay-fe/records' is where the FE project is located
 'formstack-nikolay-be' is where the backend aws sam project is located
 All cors is allowed by default for the demo.
 
-1. Configure api url in the FE formstack-nikolay-fe/records/config.js (or use the one provided)
-2. Create S3 bucket with public access and put cors policy from 'formstack-nikolay-be/s3-cors.config.txt'
-  - configure s3 bucket name in 'formstack-nikolay-fe/records/config.js'
-3. Go to template.yml and configure getSignedUrlFunction's environment variables to match your S3 bucket name and region
-4. You have to have AWS cli configured locally (aws configure command) and AWS SAM installed on your local machine
-5. go to 'formstack-nikolay-be' and run 'sam deploy -g' to deploy the sam configuration to your AWS environment
-6. To run FE locally - use 'npm install' then 'npm start'
-7. To run deploy FE run 'npm run build' which will build the project for production in /build folder.
-After this you can upload it to S3 or git as static web app.
+1. Create S3 bucket with public access and put cors policy from 'formstack-nikolay-be/s3-cors.config.txt'.
+    This is for image uploads.
+2. Go to template.yml and configure getSignedUrlFunction's environment variables to match your S3 bucket name and region
+    This is needed for the signed urls to work.
+3. You should have AWS cli configured locally (aws configure command) and AWS SAM installed on your local machine
+4. Go to 'formstack-nikolay-be' and run 'sam deploy -g' to deploy the sam configuration to your AWS environment
+5. Find the api gateway url from the deployed sam template in AWS. Set the api url in the FE formstack-nikolay-fe/records/config.js
+6. Configure s3 bucket name in 'formstack-nikolay-fe/records/config.js' (for the image uploads)
 
+# You can skip the first 6 steps if you don't want to deploy the backend and just run the app locally with the already deployed BE.
+7. To run FE locally - use 'npm install' then 'npm start'
+8. To run deploy FE run 'npm run build' which will build the project for production in /build folder.
+After this you can upload it to S3 or git as static web app.
 
 ## Unit tests BE
 
