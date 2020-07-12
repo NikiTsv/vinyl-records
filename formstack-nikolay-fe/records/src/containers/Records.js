@@ -35,7 +35,7 @@ class RecordsContainer extends Component {
     }
 
     render() {
-        return (<div className="d-flex justify-content-around flex-wrap">
+        return (<div className="d-flex justify-content-around flex-wrap mb-5">
                 {this.getContent()}
                 </div>)
     }

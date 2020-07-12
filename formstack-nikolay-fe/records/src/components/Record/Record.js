@@ -8,9 +8,8 @@ const onDetailsClick = (props) => {
 }
 
 const Record = (props) => {
-    console.log('record props', props)
     return (
-        <Card style={{ width: '18rem' }} className="mt-5 pb-5">
+        <Card style={{ width: '18rem' }} className="mt-5 mb-5">
             <Card.Img variant="top" src={props.pic} />
             <Card.Body className="d-flex flex-column">
                 <Card.Title>{props.artist} - {props.album}</Card.Title>
