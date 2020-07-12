@@ -11,7 +11,7 @@ class CreateEditRecord extends Component {
             id: props.record.id || '',
             artist: props.record.artist || '',
             album: props.record.album || '',
-            isFav: props.record.isFav || '',
+            isFavorite: props.record.isFavorite || '',
             description: props.record.description || '',
             pic: props.record.pic || '',
             tracks: props.record.tracks ||  []
@@ -62,7 +62,7 @@ class CreateEditRecord extends Component {
 
         this.handleIsFavoriteChange = (evt) =>{
             this.setState({
-                isFav: evt.target.checked
+                isFavorite: evt.target.checked
             })
         }
 
@@ -94,7 +94,7 @@ class CreateEditRecord extends Component {
                         <Form.Control type="text" placeholder="Enter album name" value={this.state.album} onChange={this.handleAlbumChange} />
                     </Form.Group>
                     <Form.Group controlId="formIsFav">
-                        <Form.Check type="checkbox" label="Is it a favorite?" checked={this.state.isFav} onChange={this.handleIsFavoriteChange} />
+                        <Form.Check type="checkbox" label="Is it a favorite?"  checked={this.state.isFavorite} onChange={this.handleIsFavoriteChange} />
                     </Form.Group>
                     <Form.Group controlId="formDesc">
                         <Form.Label>Description</Form.Label>
@@ -105,12 +105,12 @@ class CreateEditRecord extends Component {
                         <Uploader fileUploaded={this.fileUploaded}/>
                     </Form.Group>
                     <Form.Group controlId="formPic" style={{display: this.state.pic ? 'block' : 'none' }} >
-                    <Card style={{ width: '18rem' }} className="mt-5 pb-5">
+                    <Card style={{ width: '18rem' }} className="mt-5 pb-5 ">
                         <Card.Img variant="top"  src={this.state.pic} />
                     </Card>
                     </Form.Group>
 
-                    <Button variant="primary" type="button" onClick={this.addTrack}>
+                    <Button variant="success" size="sm" type="button" onClick={this.addTrack}>
                         Add Track
                     </Button>
                     </Form.Group>
@@ -118,7 +118,7 @@ class CreateEditRecord extends Component {
                             return <Track key={i} id={i} title={track} onTrackChange={this.onTrackChange} onTrackDelete={this.onTrackDelete}/>
                         })}
 
-                    <Button variant="primary" type="button" onClick={this.handleSubmit}>
+                    <Button variant="success" size="lg" type="button" onClick={this.handleSubmit}>
                         Submit
                     </Button>
                 </Form>

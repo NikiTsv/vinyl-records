@@ -1,5 +1,5 @@
-import { Form } from 'react-bootstrap';
-import React, {useState} from 'react';
+import { Form, Button, InputGroup, FormControl } from 'react-bootstrap';
+import React, { useState } from 'react';
 
 
 const Track = (props) => {
@@ -10,11 +10,23 @@ const Track = (props) => {
         props.onTrackChange(props.id, value);
     }
 
+    const handleOnDelete = () => {
+        props.onTrackDelete(props.id);
+    }
+
     return (
         <Form.Group controlId="track">
-            <Form.Control type="text" placeholder="Enter track title" value={props.title} onChange={handleChange} />
+            <InputGroup className="mb-3">
+                <FormControl
+                    placeholder="Enter track"
+                    aria-label="Track"
+                    aria-describedby="basic-addon2" value={props.title} onChange={handleChange} />
+                <InputGroup.Append>
+                    <Button variant="secondary" size="sm" onClick={handleOnDelete}>delete</Button>
+                </InputGroup.Append>
+            </InputGroup>
         </Form.Group>
-    )
-}
+            )
+        }
 
 export default Track

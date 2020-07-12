@@ -25,7 +25,7 @@ const Login = (props) => {
                 </Form.Text>
 
         </Form.Group>
-        <Button variant="primary" type="button" onClick={handleOnClick}>
+        <Button variant="success" type="button" onClick={handleOnClick}>
             Login
         </Button>
         </Form>

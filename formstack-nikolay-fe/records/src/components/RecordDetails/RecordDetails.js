@@ -30,7 +30,7 @@ const RecordDetails = (props) => {
                         . . .
                     </Card.Text>}
                     <div className="d-flex justify-content-center mt-auto">
-                        <Button variant="primary" onClick={()=>onEditClick(props)}>Edit</Button>
+                        <Button variant="success" onClick={()=>onEditClick(props)}>Edit</Button>
                     </div>
                 </Card.Body>
             </Card>
