@@ -6,7 +6,7 @@ const onDetailsClick = (props) => {
     props.navToDetails(props.id);
 }
 
-export const Record = (props) => {
+const Record = (props) => {
     return (
         <Card style={{ width: '18rem' }} className="record-card mt-5 mb-5"  onClick={()=> onDetailsClick(props)} >
             <Card.Img variant="top" src={props.pic} />

@@ -20,12 +20,17 @@ const createService = (postfixUrl, endpoint, method, data) => {
 
             const options = {
                 method: method,
-                body: JSON.stringify(data),
                 headers: {
                     ...baseHeaders,
                     ...authHeaders,
                 },
             };
+
+            if(data){
+                const body = JSON.stringify(data);
+                options.body = body;
+            }
+
             const request = new Request(
                 `${config.apiUrl}${postfixUrl}/${endpoint}`,
                 { ...options }

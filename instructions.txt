@@ -3,7 +3,7 @@ The web app is deployed on S3 and can be viewed on http://nikolay-records.s3-web
 Login with 'demo' user to view with content or type your own to start blank.
 
 'formstack-nikolay-fe/records' is where the FE project is located
-'formstack-nikolay-be' is where the backend aws sam project is located
+'formstack-nikolay-be' is where the backend aws sam project is located, node env - 10.16.0
 All cors is allowed by default for the demo.
 
 1. Create S3 bucket with public access and put cors policy from 'formstack-nikolay-be/s3-cors.config.txt'.
@@ -20,11 +20,14 @@ All cors is allowed by default for the demo.
 8. To run deploy FE run 'npm run build' which will build the project for production in /build folder.
 After this you can upload it to S3 or git as static web app.
 
-## Unit tests BE
+## Tests FE
+Tests are defined in /tests folder.
+    run 'npm test'
 
+## Tests BE
 Tests are defined in the `__tests__` folder in this project. Use `npm` to install the [Jest test framework](https://jestjs.io/) and run unit tests.
 
 ```bash
-my-application$ npm install
-my-application$ npm run test
+formstack-nikolay-be$ npm install
+formstack-nikolay-be$ npm run test
 ```
