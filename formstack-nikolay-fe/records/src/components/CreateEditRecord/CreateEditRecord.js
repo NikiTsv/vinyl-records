@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import Track from '../Track/Track';
 import Uploader from '../UploadFIle/UploadFile';
-import { withRouter } from 'react-router-dom';
 
 class CreateEditRecord extends Component {
     constructor(props){
@@ -67,9 +66,7 @@ class CreateEditRecord extends Component {
         }
 
         this.handleSubmit = () =>{
-            const changeRouteFn = () => {
-                this.props.history.push(`/records`);
-            }
+            const changeRouteFn = this.props.navToHome;
 
             this.props.createOrEditRecord({...this.state, username: this.props.username}, changeRouteFn)
         }
@@ -128,4 +125,4 @@ class CreateEditRecord extends Component {
 }
 
 
-export default withRouter(CreateEditRecord)
+export default CreateEditRecord

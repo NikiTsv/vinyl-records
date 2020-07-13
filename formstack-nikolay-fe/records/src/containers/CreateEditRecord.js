@@ -12,7 +12,7 @@ class CreateEditRecord extends Component {
 
     render() {
         return (
-            <CreateEditRecordComponent {...this.props} />
+            <CreateEditRecordComponent {...this.props}/>
         );
     }
 }
@@ -26,9 +26,10 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        createOrEditRecord: (payload, changeRouteFn) => dispatch(createEditRecord(payload, changeRouteFn))
+        createOrEditRecord: (payload, changeRouteFn) => dispatch(createEditRecord(payload, changeRouteFn)),
+        navToHome: () =>  ownProps.history.push(`/records`)
     }
 };
 

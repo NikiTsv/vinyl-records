@@ -4,8 +4,9 @@ import * as actionTypes from '../actions/actionTypes';
 import Record from '../components/Record/Record';
 import { Container, Row, Col, Spinner, Alert } from 'react-bootstrap';
 import { loadRecords } from '../actions/records'
+import { withRouter } from 'react-router-dom';
 
-class RecordsContainer extends Component {
+export class RecordsContainer extends Component {
 
     constructor(props) {
         super(props);
@@ -24,7 +25,7 @@ class RecordsContainer extends Component {
 
         if (this.props.records && this.props.records.length) {
             return (this.props.records.map(rec => (
-                        <Record key={rec.id} {...rec} />
+                        <Record key={rec.id} {...rec} navToDetails={this.props.navToDetails} />
                     ))
             )
         } else {
@@ -41,18 +42,19 @@ class RecordsContainer extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
     return {
         records: state.records.items,
         isLoading: state.records.isLoading,
-        user: state.user
+        user: state.user,
     };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        loadItems: (username) => dispatch(loadRecords(username))
+        loadItems: (username) => dispatch(loadRecords(username)),
+        navToDetails: (id) => ownProps.history.push(`/record-details/${id}`)
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecordsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(RecordsContainer));

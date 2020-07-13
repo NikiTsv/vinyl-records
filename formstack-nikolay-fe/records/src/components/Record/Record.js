@@ -1,13 +1,12 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import RecordDetails from '../../containers/RecordDetails';
-import { withRouter } from 'react-router-dom';
 
 const onDetailsClick = (props) => {
-    props.history.push(`/record-details/${props.id}`);
+    props.navToDetails(props.id);
 }
 
-const Record = (props) => {
+export const Record = (props) => {
     return (
         <Card style={{ width: '18rem' }} className="record-card mt-5 mb-5"  onClick={()=> onDetailsClick(props)} >
             <Card.Img variant="top" src={props.pic} />
@@ -29,4 +28,4 @@ const Record = (props) => {
     )
 }
 
-export default withRouter(Record)
+export default Record
